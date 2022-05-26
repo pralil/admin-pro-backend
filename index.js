@@ -1,7 +1,9 @@
-const express = require('express');
-const { dbConnection } = require('./database/config');
 require('dotenv').config();
+
+const express = require('express');
 const cors = require('cors');
+
+const { dbConnection } = require('./database/config');
 
 
 // Crear el servidor de express 
@@ -10,21 +12,19 @@ const app = express();
 //Configurar CORS
 app.use(cors());
 
+// lectura y parseo del body
+app.use( express.json() ); 
+
 // Base de datos
 dbConnection();
 
-//Rutas  userDb: mean_user - password: I0ylsvQt4g9CTi0c
-app.get('/', (req, res) => {
-
-    res.json({
-        ok: true,
-        msn: 'Hola Mundo'
-    });
-
-});
+//Rutas 
+app.use( '/api/usuarios', require('./routes/usuarios') );
+app.use( '/api/login', require('./routes/auth') );
 
 
-app.listen(process.env.PORT, () => {
-    console.log('Servidor corriendo en puerto ' + 3000 );    
+
+app.listen( process.env.PORT, () => {
+    console.log('Servidor corriendo en puerto ' + process.env.PORT );    
 })
 
