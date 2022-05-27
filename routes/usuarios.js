@@ -31,6 +31,6 @@ router.put('/:uid', [
 router.delete('/:uid',
      validarJWT,   
      borrarUsuario 
-);
+     );
 
 module.exports = router;
