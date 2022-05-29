@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="google-signin-client_id" content="271113418768-5k3286tgrrk68hel2qven7k32c377mpb.apps.googleusercontent.com"> 
+    
+    <title>Demo Login</title>
+    
+</head>
+<body>
+    
+    <h1>Google sign-in</h1>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <a href="#" onclick=" signOut();">Sign Out</a>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+<!--     
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    
+    <div id="g_id_onload"
+         data-client_id="271113418768-hiiqo780djnnm8lc2dnoi1k8k7pvc01r.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+    </div> 
+    <div class="g_id_signin" data-type="standard"></div>  -->
+
+    
+    <script>
+        function onSignIn(googleUser) {
+            console.log('Entre');
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId());
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail() ) ;
+        }    
+    
+
+        
+    </script>
+
+</body>
+</html>
