@@ -41,7 +41,6 @@ const login = async( req, res = response ) => {
 
         res.status(200).json({
             ok: true,
-            msg: 'Hola mundo',
             token
         });
 
@@ -114,9 +113,20 @@ const renewToken = async(req, res = response) => {
     // Generar el Token - JWT
     const token = await generarJWT( uid );
 
+    //obtener Usuario por uid
+    const usuarioDB = await Usuario.findById( uid );
+    if ( !usuarioDB ) {
+        return res.status(401).json({
+            ok: false,
+            msg: 'No se pudo onbtener la informacion, Usuario no encontrado'
+        })
+    }
+
+
     res.json({
         ok: true,
-        token
+        token,
+        usuario: usuarioDB
 
     })
 }
