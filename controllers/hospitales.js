@@ -88,8 +88,7 @@ const actualizarHospital = async(req, res = response ) => {
 const borrarHospital = async (req, res = response ) => {
 
     const id =  req.params.id;
-    console.log(id);
-   
+    
     try {
 
         const hospital = await Hospital.findById( id );
